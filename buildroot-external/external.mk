@@ -1,0 +1,1 @@
+include $(sort $(wildcard $(BR2_EXTERNAL_IO_NODE_PATH)/package/*/*.mk))
