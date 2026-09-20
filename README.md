@@ -19,10 +19,13 @@ The image has no application code of its own. It pulls in the other repos as pac
 
 | Milestone | Status |
 |---|---|
-| Stock Buildroot image boots in QEMU | Next |
-| Stock Buildroot image boots on the BeagleBone Black | Waiting on hardware |
-| External tree with custom defconfigs: hostname, SSH keys only, read-only rootfs | Planned |
+| Stock Buildroot image boots in QEMU | Done — Linux 6.18.7, 3.5 MB root filesystem |
+| `BR2_EXTERNAL` tree with its own defconfig, and a custom hostname | Done |
+| Stock Buildroot image boots on the BeagleBone Black | Next |
+| The C++ hello-world rebuilt with Buildroot's toolchain | Planned |
 | Own binary packaged and started by systemd | Planned |
+| SSH key-only login | Planned |
+| Read-only root filesystem | Planned |
 | The same image rebuilt with Yocto | Planned |
 | Image size, boot time, and each customization documented here | Planned |
 | PREEMPT_RT kernel | Planned |
@@ -41,7 +44,7 @@ io-node-os/
 └── meta-io-node/           Yocto layer, once the Buildroot image works
 ```
 
-Buildroot's own source isn't in this repo. A `BR2_EXTERNAL` tree keeps every customization outside Buildroot's source, so upgrading Buildroot doesn't mean re-applying edits to its files.
+Buildroot's own source isn't in this repo. A `BR2_EXTERNAL` tree keeps every customization outside Buildroot's source, so upgrading Buildroot doesn't mean re-applying edits to its files. The tree is named `IO_NODE` in `external.desc`, which is what makes `$(BR2_EXTERNAL_IO_NODE_PATH)` available in the defconfigs and package recipes.
 
 ## Building
 
@@ -70,7 +73,7 @@ make O=../br-output/qemu
 
 Log in as `root` with no password. The QEMU command is also in `buildroot/board/qemu/arm-vexpress/readme.txt`.
 
-Once the external tree exists, the stock defconfig is replaced by this repo's own:
+The external tree now exists, so the stock defconfig is replaced by this repo's own:
 
 ```sh
 make O=../br-output/qemu BR2_EXTERNAL=../io-node-os/buildroot-external io_node_qemu_defconfig
