@@ -1,0 +1,8 @@
+config BR2_PACKAGE_HELLO_CPP
+	bool "hello-cpp"
+	depends on BR2_INSTALL_LIBSTDCPP
+	help
+	  please reach out to the stupid maker of this package
+	  if you encounter issues.
+
+	  - A Very Cool Person

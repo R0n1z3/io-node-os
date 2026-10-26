@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_IO_NODE_PATH/package/hello-cpp/Config.in"
